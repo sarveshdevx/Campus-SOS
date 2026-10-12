@@ -1,0 +1,509 @@
+/* ==========================================================================
+   CampusSOS Editorial Neo-Brutalist Design System
+   Source of Truth: Approved Landing Page Reference (Cream, Heavy Black,
+   Cobalt Blue #1E40AF / #2554FF, Coral #FF5941, Neon Lime #C6FF00,
+   Lavender #8B5CF6, Offset Solid Black Drop Shadows, Hand-drawn Annotations)
+   ========================================================================== */
+
+:root {
+  /* Surface & Background Colors */
+  --bg-primary: #FDFBF4;          /* Warm cream / off-white editorial paper */
+  --bg-secondary: #F6F2E5;        /* Secondary cream */
+  --bg-card: #FFFFFF;             /* Pure card white */
+  --bg-subtle: #E8E2D2;           /* Subtle divider */
+  --bg-dark: #121417;             /* Ink black contrast surface */
+
+  /* Primary Typography */
+  --text-primary: #0F1115;        /* Pitch black ink */
+  --text-secondary: #4A5059;      /* Readable charcoal */
+  --text-muted: #7E8691;          /* Subdued helper text */
+  --text-inverse: #FFFFFF;        /* Contrast white */
+
+  /* Approved Brand Color Accents */
+  --cobalt: #2554FF;              /* Vibrant cobalt blue from screenshot title & accents */
+  --cobalt-dark: #173DC9;
+  --cobalt-light: #E0E7FF;
+  --cobalt-card: #C8DBFF;         /* Soft pastel cobalt card background */
+
+  --coral: #FF5A36;               /* Coral emergency action CTA */
+  --coral-hover: #E84622;
+  --coral-light: #FFEBE6;
+  --coral-border: #FFC5B8;
+
+  --neon-lime: #D2FF1F;           /* Neon lime green underline/badge/banner */
+  --neon-lime-light: #EEFF94;
+  --lime-card: #D7F580;           /* Soft lime confidential card background */
+
+  --lavender: #8655FE;            /* Deep vibrant lavender/purple starburst */
+  --lavender-light: #EFEBFF;
+  --lavender-card: #E8DDFF;       /* Soft lavender tracker card background */
+
+  --yellow: #FFD233;              /* Sunny yellow backdrop circle */
+  --yellow-light: #FFF8D6;
+
+  /* Editorial Borders & Heavy Neo-Brutalist Outlines */
+  --border-black: 2px solid #0F1115;
+  --border-black-thick: 3px solid #0F1115;
+  --border-black-thin: 1.5px solid #0F1115;
+
+  /* Hard-Edged Cut-Paper Offset Box Shadows (as seen in cards & buttons) */
+  --shadow-neo-sm: 2px 2px 0px #0F1115;
+  --shadow-neo-md: 4px 4px 0px #0F1115;
+  --shadow-neo-lg: 6px 6px 0px #0F1115;
+  --shadow-neo-xl: 8px 8px 0px #0F1115;
+  --shadow-neo-hover: 1px 1px 0px #0F1115;
+
+  /* Typography Font Stacks */
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-handwriting: 'Architects Daughter', 'Caveat', 'Comic Sans MS', cursive, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Corner Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --transition-fast: 120ms ease;
+  --transition-bounce: 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(rgba(15, 17, 21, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Accessibility Focus States */
+:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 3px;
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Neo-Brutalist Cards */
+.card {
+  background: var(--bg-card);
+  border: var(--border-black);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-neo-md);
+  padding: 1.75rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card-interactive:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-neo-lg);
+}
+
+.card-interactive:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-neo-sm);
+}
+
+/* Cut-paper Neo Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 0.9375rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-black);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  line-height: 1.25;
+  user-select: none;
+}
+
+.btn-black {
+  background-color: var(--text-primary);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-neo-sm);
+}
+.btn-black:hover {
+  background-color: #23272F;
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-neo-md);
+}
+.btn-black:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.btn-primary {
+  background-color: var(--cobalt);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-neo-md);
+}
+.btn-primary:hover {
+  background-color: var(--cobalt-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-neo-lg);
+}
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-neo-sm);
+}
+
+.btn-secondary {
+  background-color: #FFFFFF;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-neo-sm);
+}
+.btn-secondary:hover {
+  background-color: var(--bg-secondary);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-neo-md);
+}
+.btn-secondary:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.btn-coral {
+  background-color: var(--coral);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-neo-md);
+}
+.btn-coral:hover {
+  background-color: var(--coral-hover);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-neo-lg);
+}
+.btn-coral:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-neo-sm);
+}
+
+.btn-mint {
+  background-color: var(--neon-lime);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-neo-sm);
+}
+.btn-mint:hover {
+  background-color: var(--neon-lime-light);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-neo-md);
+}
+.btn-mint:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.btn-sm {
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+}
+
+.btn-lg {
+  padding: 0.875rem 1.875rem;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+}
+
+/* Hero Pill Emergency Button (Matching exact reference image) */
+.hero-sos-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background-color: var(--coral);
+  color: #0F1115;
+  font-weight: 900;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.875rem 2.25rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-black-thick);
+  box-shadow: var(--shadow-neo-md);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hero-sos-pill:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-neo-lg);
+  background-color: #FF6A49;
+}
+
+.hero-sos-pill:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-neo-sm);
+}
+
+/* Feature Trio Cards (Matching the 3 cards below the hero) */
+.feature-trio-card {
+  border: var(--border-black-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-neo-md);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.feature-trio-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-neo-lg);
+}
+
+.feature-trio-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-neo-sm);
+}
+
+.card-blue {
+  background-color: var(--cobalt-card);
+}
+
+.card-lime {
+  background-color: var(--lime-card);
+}
+
+.card-lavender {
+  background-color: var(--lavender-card);
+}
+
+/* Hand-Drawn Annotation Badges & Stickers */
+.sticker-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #FFFFFF;
+  border: var(--border-black-thick);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-neo-sm);
+  font-weight: 800;
+  font-size: 0.875rem;
+  line-height: 1.2;
+}
+
+.sticker-oval {
+  border: var(--border-black-thick);
+  border-radius: 50%;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  font-weight: 800;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background: #FFFFFF;
+  box-shadow: var(--shadow-neo-sm);
+}
+
+/* Persistent Floating SOS Button (Requirement: Accessible throughout portal) */
+.floating-sos-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.floating-sos-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  background: var(--coral);
+  color: #0F1115;
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--radius-pill);
+  font-weight: 900;
+  font-size: 0.9375rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: var(--border-black-thick);
+  box-shadow: var(--shadow-neo-lg);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  user-select: none;
+}
+
+.floating-sos-btn:hover {
+  transform: translate(-2px, -2px) scale(1.02);
+  box-shadow: var(--shadow-neo-xl);
+  background-color: #FF6A49;
+}
+
+.floating-sos-btn:active {
+  transform: translate(2px, 2px) scale(0.98);
+  box-shadow: var(--shadow-neo-sm);
+}
+
+.floating-sos-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--radius-pill);
+  border: 3px solid var(--coral);
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: var(--border-black-thin);
+}
+
+.badge-coral {
+  background: var(--coral-light);
+  color: var(--text-primary);
+}
+
+.badge-cobalt {
+  background: var(--cobalt-light);
+  color: var(--cobalt-dark);
+}
+
+.badge-mint {
+  background: var(--lime-card);
+  color: var(--text-primary);
+}
+
+.badge-yellow {
+  background: var(--yellow-light);
+  color: var(--text-primary);
+}
+
+.badge-lavender {
+  background: var(--lavender-light);
+  color: var(--text-primary);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 17, 21, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: fade-in 0.15s ease-out;
+}
+
+.modal-dialog {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: var(--border-black-thick);
+  width: 100%;
+  max-width: 520px;
+  box-shadow: var(--shadow-neo-xl);
+  overflow: hidden;
+  animation: scale-up 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-up {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Form Styles */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-bottom: 1.125rem;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  background-color: #FFFFFF;
+  border: var(--border-black);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-neo-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: var(--cobalt);
+  box-shadow: var(--shadow-neo-md);
+  outline: none;
+}
+
+/* ==========================================================================
+   Accessibility: Reduced-Motion Preferences
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .floating-sos-pulse {
+    animation: none !important;
+    opacity: 0.4 !important;
+  }
+}
+

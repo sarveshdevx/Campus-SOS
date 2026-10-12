@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusSOS — Project Expo Presentation Deck</title>
+  <style>
+    :root {
+      --bg-primary: #FDFBF4;
+      --bg-card: #FFFFFF;
+      --text-main: #0F1115;
+      --text-muted: #4A5059;
+      --cobalt: #2554FF;
+      --cobalt-light: #E0E7FF;
+      --coral: #FF5A36;
+      --coral-light: #FFEBE6;
+      --neon-lime: #D2FF1F;
+      --lavender: #8655FE;
+      --lavender-light: #EFEBFF;
+      --yellow: #FFD233;
+      --border-black: 3px solid #0F1115;
+      --border-thin: 2px solid #0F1115;
+      --shadow-neo: 5px 5px 0px #0F1115;
+      --shadow-neo-lg: 8px 8px 0px #0F1115;
+      --radius: 12px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background-image: radial-gradient(rgba(15, 17, 21, 0.05) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    /* Top presentation navigation bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 2rem;
+      border-bottom: var(--border-black);
+      background: #FFFFFF;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--neon-lime);
+      border: var(--border-thin);
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-weight: 900;
+      font-size: 0.8125rem;
+      box-shadow: 2px 2px 0px #0F1115;
+    }
+
+    .slide-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      background: #FFFFFF;
+      border: var(--border-thin);
+      padding: 0.4rem 0.85rem;
+      font-size: 0.875rem;
+      font-weight: 800;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 2px 2px 0px #0F1115;
+      transition: transform 0.1s ease;
+    }
+
+    .btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px #0F1115;
+    }
+
+    .btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px #0F1115;
+    }
+
+    .slide-counter {
+      font-weight: 900;
+      font-size: 0.9375rem;
+      font-family: monospace;
+    }
+
+    /* Main Slide Stage */
+    .slide-stage {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1100px;
+      background: var(--bg-card);
+      border: var(--border-black);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-neo-lg);
+      padding: 3rem;
+      min-height: 600px;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography & Slide Elements */
+    .slide-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      border: var(--border-thin);
+      margin-bottom: 1rem;
+      box-shadow: 2px 2px 0px #0F1115;
+    }
+
+    .tag-coral { background: var(--coral-light); color: var(--coral); }
+    .tag-cobalt { background: var(--cobalt-light); color: var(--cobalt); }
+    .tag-lime { background: var(--neon-lime); color: #0F1115; }
+    .tag-lavender { background: var(--lavender-light); color: var(--lavender); }
+
+    h1.slide-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    h2.slide-subtitle {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border: var(--border-thin);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-neo);
+    }
+
+    .card-title {
+      font-size: 1.125rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      margin-top: 0.75rem;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9375rem;
+      line-height: 1.45;
+    }
+
+    ul.bullet-list li::before {
+      content: "■";
+      position: absolute;
+      left: 0;
+      color: var(--cobalt);
+      font-size: 0.85rem;
+    }
+
+    /* Code & Architecture Display */
+    .code-box {
+      background: #121417;
+      color: #FFFFFF;
+      border: var(--border-thin);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      line-height: 1.4;
+    }
+
+    /* Speaker Notes Box */
+    .speaker-notes-drawer {
+      border-top: var(--border-black);
+      background: #FFFCEB;
+      padding: 1.25rem 2rem;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .speaker-notes-drawer.open {
+      display: block;
+    }
+
+    .speaker-notes-title {
+      font-weight: 900;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      color: #8A6D00;
+      margin-bottom: 0.35rem;
+    }
+
+    /* Table styling */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.875rem;
+    }
+
+    table.data-table th, table.data-table td {
+      border: var(--border-thin);
+      padding: 0.65rem 0.85rem;
+      text-align: left;
+    }
+
+    table.data-table th {
+      background: var(--bg-primary);
+      font-weight: 900;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .slide { padding: 1.5rem; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      h1.slide-title { font-size: 1.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-bar">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <span class="brand-badge">⚡ CAMPUSSOS EXPO 2026</span>
+      <span style="font-weight: 800; font-size: 0.9375rem; color: var(--text-muted);">A Safer Campus, Together</span>
+    </div>
+    <div class="slide-controls">
+      <button class="btn" onclick="toggleNotes()">Toggle Speaker Notes (N)</button>
+      <button class="btn" onclick="prevSlide()">◀ Prev</button>
+      <span class="slide-counter" id="counter">01 / 12</span>
+      <button class="btn" onclick="nextSlide()">Next ▶</button>
+    </div>
+  </header>
+
+  <!-- Slide Stage -->
+  <main class="slide-stage">
+
+    <!-- Slide 1: Title -->
+    <div class="slide active" id="slide-1">
+      <span class="slide-tag tag-lime">Full-Stack Student Project Expo</span>
+      <h1 class="slide-title">CampusSOS<br><span style="color: var(--cobalt);">A Safer Campus, Together.</span></h1>
+      <h2 class="slide-subtitle">Rapid Emergency Response, Confidential Incident Reporting & Coordinated Operations</h2>
+      <div class="grid-2">
+        <div class="card" style="border-left: 6px solid var(--coral);">
+          <div class="card-title">🚨 Dual-Pathway Safety Architecture</div>
+          <p class="card-desc">Clear separation between urgent life-safety activation (sub-millisecond deterministic SOS) and structured safety concern management.</p>
+        </div>
+        <div class="card" style="border-left: 6px solid var(--cobalt);">
+          <div class="card-title">🔒 Privacy-First Engineering</div>
+          <p class="card-desc">Identified, completely anonymous, and strictly confidential disciplinary reporting paths designed to eliminate fear of retaliation.</p>
+        </div>
+      </div>
+      <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-primary); border: var(--border-thin); border-radius: 8px; font-size: 0.875rem; font-weight: 700;">
+        Technology: React 18 · TypeScript · Vite · PHP 8.2+ · PDO · MySQL / MariaDB (XAMPP macOS)
+      </div>
+      <div class="speaker-notes" data-notes="Good morning, respected judges. Welcome to CampusSOS. Campus safety is essential, but existing methods are often fragmented, slow, or intimidating for students. Today we present CampusSOS—a fully functional, privacy-first web application connecting students, responders, and administrators into an accountable safety network."></div>
+    </div>
+
+    <!-- Slide 2: Problem -->
+    <div class="slide" id="slide-2">
+      <span class="slide-tag tag-coral">The Core Challenge</span>
+      <h1 class="slide-title">The Realities of Campus Safety Breakdown</h1>
+      <h2 class="slide-subtitle">Why traditional university emergency response fails students and dispatchers</h2>
+      <div class="grid-3">
+        <div class="card" style="border-top: 6px solid var(--coral);">
+          <div class="card-title">1. Delayed Response</div>
+          <p class="card-desc">Traditional call desks and paper logs create routing friction. In sudden medical emergencies or security threats, every minute of manual coordination compounds risk.</p>
+        </div>
+        <div class="card" style="border-top: 6px solid var(--lavender);">
+          <div class="card-title">2. Under-Reporting</div>
+          <p class="card-desc">Up to 80% of hazing, bullying, and harassment concerns go unreported due to fear of retaliation, academic exposure, or lack of verified confidentiality.</p>
+        </div>
+        <div class="card" style="border-top: 6px solid var(--cobalt);">
+          <div class="card-title">3. Siloed Operations</div>
+          <p class="card-desc">Campus security, clinic paramedics, and facilities operate in separate silos. Multiple calls for the same event create chaos without automated correlation.</p>
+        </div>
+      </div>
+      <div class="speaker-notes" data-notes="When an incident happens, two problems arise: delayed physical response due to manual dispatch, and silence from victims of sensitive harassment or hazing who fear exposure. Furthermore, dispatchers receive duplicate reports for identical problems without automated triage."></div>
+    </div>
+
+    <!-- Slide 3: Solution & Users -->
+    <div class="slide" id="slide-3">
+      <span class="slide-tag tag-cobalt">System Solution</span>
+      <h1 class="slide-title">Dual-Pathway Safety & Specialized Roles</h1>
+      <h2 class="slide-subtitle">Architecturally isolating emergency response from routine concern intake</h2>
+      <div class="grid-2">
+        <div class="card" style="background: var(--coral-light); border: var(--border-black);">
+          <div class="card-title" style="color: var(--coral);">Pathway A: Emergency SOS</div>
+          <ul class="bullet-list">
+            <li>Persistent one-click floating action button across the portal.</li>
+            <li>Sub-millisecond deterministic dispatch (&lt; 4ms).</li>
+            <li>Zero AI dependency: Life safety never waits on external LLM APIs.</li>
+            <li>Instant concurrent routing to on-duty Security and Medical teams.</li>
+          </ul>
+        </div>
+        <div class="card" style="background: var(--cobalt-light); border: var(--border-black);">
+          <div class="card-title" style="color: var(--cobalt);">Pathway B: Routine & Confidential Intake</div>
+          <ul class="bullet-list">
+            <li>Structured intake across 6 campus safety disciplines.</li>
+            <li>Three-tier privacy: Identified, Anonymous, and Confidential.</li>
+            <li>Multi-factor duplicate candidate matching with human review.</li>
+            <li>Transparent chronological timeline for student tracking.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="speaker-notes" data-notes="CampusSOS solves this through two distinct pathways. Pathway A is urgent SOS: zero AI delay, instant concurrent dispatch. Pathway B is routine concern reporting with privacy tiers and candidate duplicate detection."></div>
+    </div>
+
+    <!-- Slide 4: Student Experience -->
+    <div class="slide" id="slide-4">
+      <span class="slide-tag tag-lime">Student Portal</span>
+      <h1 class="slide-title">Frictionless, Accountable Student Experience</h1>
+      <h2 class="slide-subtitle">Three privacy tiers and live transparent tracking</h2>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">📋 3 Reporting Tiers</div>
+          <ul class="bullet-list">
+            <li><strong>Standard Identified:</strong> Authenticated report linked to student account; updates sent to user notification feed.</li>
+            <li><strong>Anonymous Concern:</strong> Identity sanitized to NULL at database insertion level to prevent accidental disclosure.</li>
+            <li><strong>Confidential Complaint:</strong> Restricted strictly to Title IX / ICC or Proctorial Board; hidden from general responders.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">🕒 Incident Tracker Timeline</div>
+          <ul class="bullet-list">
+            <li>Instant ticket issuance with format <code>INC-YYYY-XXXX</code>.</li>
+            <li>Chronological status progression: <em>reported &rarr; under_review &rarr; dispatched &rarr; in_progress &rarr; resolved</em>.</li>
+            <li>Detailed notes and responder action log visible in real-time.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="speaker-notes" data-notes="Students can choose between identified reporting, completely anonymous reporting, or confidential intake. Once submitted, they receive an INC-2026 tracking number and can follow the progress of their report through a live timeline."></div>
+    </div>
+
+    <!-- Slide 5: Emergency SOS & Responder Lifecycle -->
+    <div class="slide" id="slide-5">
+      <span class="slide-tag tag-coral">Life-Safety Dispatch</span>
+      <h1 class="slide-title">Emergency SOS Lifecycle & Responder Operations</h1>
+      <h2 class="slide-subtitle">Deterministic sub-millisecond dispatch and 6 specialized disciplines</h2>
+      <div class="code-box">
+[Student Clicks SOS] &rarr; [Location Confirmation] &rarr; [Deterministic Engine (&lt;4ms)] &rarr; [Concurrent Dispatch]
+                                                                        &darr;
+                                          [Security Quick Reaction] + [Campus Paramedic Clinic]
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">1. Dispatched</div>
+          <p class="card-desc">Alert code <code>SOS-YYYY-XXXX</code> generated; concurrent records created in <code>sos_assignments</code>.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">2. Acknowledged</div>
+          <p class="card-desc">Responder marks call seen via mobile console; advances status to <code>acknowledged</code>.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">3. Resolved</div>
+          <p class="card-desc">Danger mitigated on-scene; responder submits resolution notes and closes alert.</p>
+        </div>
+      </div>
+      <div class="speaker-notes" data-notes="In an emergency, reliability is critical. When SOS is triggered, our deterministic engine executes in under 4ms and dispatches both Security and Medical teams concurrently. Responders acknowledge the call, track on-scene progress, and resolve it with verified notes."></div>
+    </div>
+
+    <!-- Slide 6: Privacy by Design -->
+    <div class="slide" id="slide-6">
+      <span class="slide-tag tag-lavender">Privacy Architecture</span>
+      <h1 class="slide-title">Privacy by Design: Protecting the Vulnerable</h1>
+      <h2 class="slide-subtitle">Enforcing student confidentiality at database and API layers</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Privacy Level</th>
+            <th>Database Reporter ID</th>
+            <th>API Query Exposure</th>
+            <th>Authorized Investigation Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Standard</strong></td>
+            <td><code>user_id</code> (Stored)</td>
+            <td>Student Name &amp; Contact</td>
+            <td>All authorized campus responders</td>
+          </tr>
+          <tr>
+            <td><strong>Anonymous</strong></td>
+            <td><strong style="color: var(--coral);">NULL (Sanitized)</strong></td>
+            <td><code>"Anonymous Student"</code></td>
+            <td>General safety responders (no identity link)</td>
+          </tr>
+          <tr>
+            <td><strong>Confidential</strong></td>
+            <td><code>user_id</code> (Protected)</td>
+            <td><strong style="color: var(--coral);">Strictly Denied</strong></td>
+            <td>ICC / Title IX or Proctorial Board ONLY</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 1.5rem; padding: 1rem; background: var(--lavender-light); border: var(--border-thin); border-radius: 8px; font-size: 0.9375rem;">
+        <strong>Safety Guardrail:</strong> Confidential and sensitive reports (Anti-Ragging, Title IX) <strong>automatically bypass external AI</strong> to prevent private student narratives from leaving the campus infrastructure.
+      </div>
+      <div class="speaker-notes" data-notes="Privacy is enforced in our SQL queries and data models. Anonymous reports store NULL for reporter ID. Confidential complaints are cryptographically restricted so general staff cannot read them, and they are never sent to external AI services."></div>
+    </div>
+
+    <!-- Slide 7: Incident Matching & Human Review -->
+    <div class="slide" id="slide-7">
+      <span class="slide-tag tag-cobalt">Triage Algorithm</span>
+      <h1 class="slide-title">Multi-Factor Incident Matching &amp; Human Review</h1>
+      <h2 class="slide-subtitle">Transparent mathematical similarity with zero automated deletions</h2>
+      <div class="code-box">
+Score = (0.25 &times; Category) + (0.35 &times; Location/Haversine) + (0.20 &times; Temporal Window) + (0.20 &times; Lexical Jaccard)
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🔍 Weighted Heuristic Factors</div>
+          <ul class="bullet-list">
+            <li><strong>Category (0.25):</strong> Strict match across 6 safety categories.</li>
+            <li><strong>Location &amp; GPS (0.35):</strong> Landmark matching + sub-50m Haversine distance.</li>
+            <li><strong>Temporal Window (0.20):</strong> Scaled decay within 30 to 180 minutes.</li>
+            <li><strong>Lexical Overlap (0.20):</strong> Non-stopword Jaccard token similarity.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">🛡️ Human-in-the-Loop Safeguard</div>
+          <ul class="bullet-list">
+            <li>Threshold &ge; 0.60 flags duplicate candidate for review.</li>
+            <li><strong>Zero Auto-Deletion:</strong> Algorithm only recommends; dispatchers make the final decision.</li>
+            <li><strong>MySQL Check Constraint:</strong> Enforces <code>incident_a_id &lt; incident_b_id</code> to eliminate duplicate reversed pairs and self-matching.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="speaker-notes" data-notes="To eliminate duplicate clutter, we use a transparent multi-factor scoring formula evaluating category, GPS coordinates, time, and keywords. Candidates with a score >= 0.60 are shown for human review. Crucially, the system never deletes or merges tickets automatically; human dispatchers maintain full control."></div>
+    </div>
+
+    <!-- Slide 8: Technical Architecture -->
+    <div class="slide" id="slide-8">
+      <span class="slide-tag tag-lime">Full-Stack Architecture</span>
+      <h1 class="slide-title">Enterprise System Architecture</h1>
+      <h2 class="slide-subtitle">Decoupled presentation, modular REST API, and relational MySQL persistence</h2>
+      <div class="code-box">
+[Student / Responder / Admin]
+              &darr;
+    [React 18 + TypeScript + Vite] (Warm Cream Neo-Brutalist UI)
+              &darr; (HTTP JSON / HttpOnly Cookies / CSRF Token / CORS Allowlist)
+    [PHP 8.2+ Modular REST API]
+      ├── Controllers (Auth, Incident, SOS, Responder, Admin)
+      ├── Middleware (Session Auth, Role Enforcement, CSRF Guard)
+      ├── Services (Deterministic SOS, Incident Matcher, AI Fallback)
+              &darr; (Native PDO Prepared Statements ATTR_EMULATE_PREPARES=false)
+    [MySQL / MariaDB 10.4+] (`campussos` - 13 Relational InnoDB Tables)
+              &uarr; (Optional, Non-Critical Enhancement)
+    [Google Gemini 1.5 Flash API] (3.0s Timeout Ceiling &rarr; Local Keyword Fallback)
+      </div>
+      <div class="speaker-notes" data-notes="Here is our full-stack architecture. The frontend is built with React 18, TypeScript, and Vite. The backend is a modular PHP 8.2 REST API using native PDO prepared statements for SQL-injection prevention. MySQL provides relational integrity across 13 tables. Optional Gemini AI is isolated as a non-critical sidecar with local fallback."></div>
+    </div>
+
+    <!-- Slide 9: Security & Fallback -->
+    <div class="slide" id="slide-9">
+      <span class="slide-tag tag-coral">Security & Reliability</span>
+      <h1 class="slide-title">Application Security &amp; Resilient Fallback</h1>
+      <h2 class="slide-subtitle">Defense-in-depth protection and offline operational continuity</h2>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🔐 Core Security Controls</div>
+          <ul class="bullet-list">
+            <li><strong>Role Escalation Prevention:</strong> Public registration strictly provisions <code>student</code> role; client overrides are ignored.</li>
+            <li><strong>Session Fixation Protection:</strong> Session ID regenerated on login (<code>session_regenerate_id(true)</code>).</li>
+            <li><strong>Anti-CSRF:</strong> 64-character token required on all state-changing endpoints.</li>
+            <li><strong>Exception Sanitization:</strong> Generic error messages prevent database credential or stack trace leaks.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">⚡ Deterministic Heuristic Fallback</div>
+          <ul class="bullet-list">
+            <li><strong>Zero Delay:</strong> If Gemini is offline, disabled, or times out (3.0s), local keyword heuristics classify emergency instantly.</li>
+            <li><strong>100% Submission Guarantee:</strong> External AI failures never block incident creation or SOS dispatch.</li>
+            <li><strong>Zero Secrets in Frontend:</strong> API keys and DB credentials exist solely in <code>backend/.env</code> outside the public web root.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="speaker-notes" data-notes="Security is built into every layer. Public registration cannot escalate privileges. Sessions are protected with regenerated IDs and CSRF tokens. If external AI fails or times out, our local keyword heuristic engine takes over in under 2ms, guaranteeing that emergency intake never fails."></div>
+    </div>
+
+    <!-- Slide 10: Verified Test Results -->
+    <div class="slide" id="slide-10">
+      <span class="slide-tag tag-lime">Verification Baseline</span>
+      <h1 class="slide-title">94 Automated Tests Across 6 Test Suites</h1>
+      <h2 class="slide-subtitle">Rigorous verification covering security, latency, and business logic</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Test Suite</th>
+            <th>Verification Scope</th>
+            <th>Pass Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>test_auth_phase3.php</code></td>
+            <td>Authentication, Input Validators &amp; CSRF Tokens</td>
+            <td><strong style="color: var(--cobalt);">12 / 12 (100%)</strong></td>
+          </tr>
+          <tr>
+            <td><code>test_phase5.php</code></td>
+            <td>Role Scoping, SOS States &amp; Confidential Isolation</td>
+            <td><strong style="color: var(--cobalt);">9 / 9 (100%)</strong></td>
+          </tr>
+          <tr>
+            <td><code>test_phase6.php</code></td>
+            <td>Multi-Factor Matching, Haversine &amp; Title IX AI Bypass</td>
+            <td><strong style="color: var(--cobalt);">12 / 12 (100%)</strong></td>
+          </tr>
+          <tr>
+            <td><code>test_phase7_e2e.php</code></td>
+            <td>End-to-End QA, Seeder &amp; Deterministic SOS Latency</td>
+            <td><strong style="color: var(--cobalt);">18 / 18 (100%)</strong></td>
+          </tr>
+          <tr>
+            <td><code>test_phase9_acceptance.php</code></td>
+            <td>Cross-Feature Integration &amp; Complete Lifecycle</td>
+            <td><strong style="color: var(--cobalt);">20 / 20 (100%)</strong></td>
+          </tr>
+          <tr>
+            <td><code>test_phase10_rc.php</code></td>
+            <td>Release Candidate Freeze &amp; Runtime Environment</td>
+            <td><strong style="color: var(--cobalt);">23 / 23 (100%)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 1.25rem; font-weight: 800; font-size: 0.9375rem;">
+        Total: 94 / 94 Passing Tests (0 Failures) · 0 TypeScript Errors · 37 PHP Files Clean Lint
+      </div>
+      <div class="speaker-notes" data-notes="We believe in verifiable engineering. Across six test suites, 94 automated tests verify input sanitization, role permissions, sub-millisecond SOS dispatch, duplicate matching constraints, and error handling. Our frontend compiles with 0 TypeScript errors."></div>
+    </div>
+
+    <!-- Slide 11: Limitations & Future Roadmap -->
+    <div class="slide" id="slide-11">
+      <span class="slide-tag tag-lavender">Roadmap</span>
+      <h1 class="slide-title">System Boundaries &amp; Future Engineering</h1>
+      <h2 class="slide-subtitle">Honest evaluation of current boundaries and real-world scalability</h2>
+      <div class="grid-2">
+        <div class="card" style="border-left: 6px solid #8A6D00;">
+          <div class="card-title">Current System Boundaries (Today)</div>
+          <ul class="bullet-list">
+            <li><strong>Local Simulation:</strong> SOS alerts route to campus internal security and medical teams; does not contact external 911/police services.</li>
+            <li><strong>Simulated SMS:</strong> Alerts update via database feeds rather than live cellular telecom carriers.</li>
+            <li><strong>AI Rate Limits:</strong> External Gemini calls subject to provider quota (handled via deterministic fallback).</li>
+          </ul>
+        </div>
+        <div class="card" style="border-left: 6px solid var(--cobalt);">
+          <div class="card-title">Future Scaling Roadmap (Tomorrow)</div>
+          <ul class="bullet-list">
+            <li><strong>Telecom Gateways:</strong> Integration with Twilio / WhatsApp Business for offline SMS student broadcast.</li>
+            <li><strong>WebRTC Audio:</strong> Two-way real-time audio channel between stranded student and on-duty dispatcher.</li>
+            <li><strong>Multi-Campus Multi-Tenancy:</strong> Partitioned tenant domains for university district networks.</li>
+            <li><strong>Mobile Geofencing:</strong> Native Capacitor / React Native app with GPS background beacon tracking.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="speaker-notes" data-notes="To maintain engineering integrity, we clearly distinguish our current implementation from future goals. Currently, the system manages internal campus alert routing and simulates SMS dispatch. In the future, we plan live telecom SMS integration, WebRTC walkie-talkie audio, and native mobile GPS geofencing."></div>
+    </div>
+
+    <!-- Slide 12: Conclusion -->
+    <div class="slide" id="slide-12">
+      <span class="slide-tag tag-lime">Summary</span>
+      <h1 class="slide-title">CampusSOS: Engineered for Real Impact</h1>
+      <h2 class="slide-subtitle">A robust, tested, and human-centered campus safety foundation</h2>
+      <div class="grid-2">
+        <div class="card" style="border-top: 6px solid var(--coral);">
+          <div class="card-title">⚡ Instant Life-Safety Dispatch</div>
+          <p class="card-desc">Deterministic execution in sub-4ms. Zero AI latency. Concurrent routing to on-duty security and medical units.</p>
+        </div>
+        <div class="card" style="border-top: 6px solid var(--cobalt);">
+          <div class="card-title">🔒 Verifiable Privacy Protection</div>
+          <p class="card-desc">Anonymous reporting strictly nullifies reporter ID. Confidential complaints isolated from general staff and cloud AI.</p>
+        </div>
+        <div class="card" style="border-top: 6px solid var(--lavender);">
+          <div class="card-title">🔍 Human-Centered Triage</div>
+          <p class="card-desc">Mathematical multi-factor matching formula flags duplicates while human dispatchers retain complete authority.</p>
+        </div>
+        <div class="card" style="border-top: 6px solid var(--neon-lime);">
+          <div class="card-title">✅ Production-Grade Quality</div>
+          <p class="card-desc">94 automated tests, clean TypeScript compilation, and defense-in-depth security ready for live demonstration.</p>
+        </div>
+      </div>
+      <div style="margin-top: 2rem; text-align: center; font-size: 1.125rem; font-weight: 800; color: var(--cobalt);">
+        Ready for Live Demonstration &bull; Questions Welcome from the Panel
+      </div>
+      <div class="speaker-notes" data-notes="CampusSOS demonstrates that modern web engineering can solve real campus problems. With deterministic dispatch, ironclad privacy, and human-in-the-loop algorithms, we make campuses safer and more accountable. Thank you! We are now excited to demonstrate the live application."></div>
+    </div>
+
+  </main>
+
+  <!-- Speaker Notes Drawer -->
+  <footer class="speaker-notes-drawer" id="notesDrawer">
+    <div class="speaker-notes-title">SPEAKER SCRIPT &amp; TIMING NOTES (PRESS 'N' TO TOGGLE)</div>
+    <div id="notesContent">Loading notes...</div>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 12;
+
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      currentSlide = index;
+
+      for (let i = 1; i <= totalSlides; i++) {
+        const el = document.getElementById(`slide-${i}`);
+        if (el) el.classList.remove('active');
+      }
+
+      const activeEl = document.getElementById(`slide-${currentSlide}`);
+      if (activeEl) {
+        activeEl.classList.add('active');
+        const notes = activeEl.querySelector('.speaker-notes');
+        const notesContent = document.getElementById('notesContent');
+        if (notes && notesContent) {
+          notesContent.innerText = notes.getAttribute('data-notes') || 'No notes for this slide.';
+        }
+      }
+
+      document.getElementById('counter').innerText = 
+        String(currentSlide).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleNotes() {
+      const drawer = document.getElementById('notesDrawer');
+      drawer.classList.toggle('open');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N') {
+        toggleNotes();
+      }
+    });
+
+    // Initialize
+    showSlide(1);
+  </script>
+</body>
+</html>
+
